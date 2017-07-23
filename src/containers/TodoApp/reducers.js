@@ -4,6 +4,7 @@ export const todos = (state = [], action) => {
         case 'ADD_TODO':
             return [
                 ...state,
+<<<<<<< 21e975da869ea60ab00763cd2d869011ee14b581
                 {
                     text: action.text,
                     id: action.id,
@@ -17,6 +18,10 @@ export const todos = (state = [], action) => {
                 }
                 return x
             });
+=======
+                action.text
+            ];
+>>>>>>> Refactor and Rewrite the new todo application
         default: return state;
     }
 }
