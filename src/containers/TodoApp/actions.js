@@ -11,3 +11,10 @@ export const showAll = () => {
         type: 'SHOW_ALL',
     }
 }
+
+export const toggle = (id) => {
+    return {
+        type: 'TOGGLE_TODO',
+        id: id
+    }
+}

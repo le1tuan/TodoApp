@@ -4,8 +4,19 @@ export const todos = (state = [], action) => {
         case 'ADD_TODO':
             return [
                 ...state,
-                action.text
+                {
+                    text: action.text,
+                    id: action.id,
+                    completed: false
+                }
             ];
+        case 'TOGGLE_TODO':
+            return state.map(x => {
+                if(x.id === action.id){
+                    x.completed = !x.completed
+                }
+                return x
+            });
         default: return state;
     }
 }

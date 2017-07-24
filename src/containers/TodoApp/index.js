@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { addTodo, showAll } from './actions';
+import { addTodo, showAll, toggle } from './actions';
 import { todos } from './reducers';
 import { connect } from 'react-redux';
+import TodoList from '../../components/TodoList';
+import MyAppBar from '../AppBar';
+import TextField from 'material-ui/TextField';
+import Button from '../../components/Button';
 
 class TodoApp extends React.Component {
     constructor (props) {
@@ -22,16 +26,19 @@ class TodoApp extends React.Component {
         })
     }
     render(){
+        const {todos} = this.props;
         return(
             <div>
+                <MyAppBar/>
                 <ul>
-                    {this.props.todos.map(x => {
-                        return <li>{x}</li>
-                    })}
+                    {todos.map(x => <TodoList key={x.id} id={x.id} text={x.text} handleComplete={() => this.props.toggle(x.id)} completed={x.completed}/>)}                   
                 </ul>
-   
-                <input type="text" onChange={this.handleChange} value={this.state.text}/>
-                <button onClick={this.handleClick}>ADD</button>
+                <TextField
+                    type="text"
+                    onChange={this.handleChange} value={this.state.text}
+                />
+                <br />
+                <Button label="Primary" primary={true} onClick={this.handleClick}/>
             </div>
         )
     }
@@ -46,6 +53,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
        addTodo: (text) => dispatch(addTodo(text)),
+       toggle: (id) => dispatch(toggle(id)),
        show: () => dispatch(showAll()),
     }
 }
