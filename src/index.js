@@ -232,7 +232,7 @@ const todoApp = combineReducers({
     visibilityFilter
 })
 let nextTodoId = 0;
-const store = createStore(todoApp);
+const store = createStore(todoApp, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 const FilterLink = ({ filter,children, current }) => {
     if(current === filter){
         return <span>{children}</span>
@@ -298,6 +298,9 @@ class Todo extends React.Component {
         )
     }
 }
+
+
+console.log('123----->',store.getState());
 const render = () => {
     ReactDOM.render(
         <Todo {...store.getState()}/>,

@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - "6.9.4"
+dist: trusty
+sudo: enabled
+os: ubuntu
+cache:
+  directories:
+    - "node_modules"
+before_install:
+  - npm i -g npm@3.10.10
+install: 
+  - npm install

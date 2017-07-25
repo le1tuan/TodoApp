@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider, connect } from 'react-redux';
-import { todos } from './containers/TodoApp/reducers';
 import TodoApp from './containers/TodoApp';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './index.css';
+import todoApp from './containers/TodoApp/reducers'
 /*const todos = (state = [], action) => {
     switch(action.type){
         case 'SHOW_ALL': return state;
@@ -81,7 +81,7 @@ class Button extends React.Component {
     }
 }*/
 injectTapEventPlugin();
-const store = createStore(todos,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(todoApp,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 ReactDOM.render(
 <Provider store={store}>
     <MuiThemeProvider>
